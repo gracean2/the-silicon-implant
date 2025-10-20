@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Silicon Satirist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Libre Franklin', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(200,200,220,0.08) 50%, rgba(255,255,255,0.05) 100%);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(180,180,220,0.15);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4d4d4, #a8a8a8, #c0c0c0, #e8e8e8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(200,200,220,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .logo svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .site-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #c8c8dc, #e8e8f0, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.5px;
+        }
+
+        .tagline {
+            font-size: 13px;
+            color: #a0a0b0;
+            font-style: italic;
+            margin-left: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(180,180,200,0.1) 0%, rgba(200,200,220,0.15) 100%);
+            border-radius: 16px;
+            padding: 60px 40px;
+            margin-bottom: 60px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 8px 32px rgba(180,180,220,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(200,200,220,0.5), transparent);
+        }
+
+        .hero h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff, #d0d0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #b0b0c0;
+            max-width: 800px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .article-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(200,200,220,0.06) 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(180,180,220,0.08);
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(180,180,220,0.2);
+            border-color: rgba(200,200,220,0.3);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, rgba(200,200,220,0.15), rgba(180,180,200,0.1));
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #c8c8dc;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(200,200,220,0.2);
+        }
+
+        .article-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #ffffff;
+            line-height: 1.35;
+            letter-spacing: -0.3px;
+        }
+
+        .article-excerpt {
+            color: #a0a0b0;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #808090;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(200,200,220,0.05) 100%);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin-top: 60px;
+            color: #808090;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .site-title {
+                font-size: 24px;
+            }
+            
+            .tagline {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                </svg>
+            </div>
+            <h1 class="site-title">The Silicon Satirist</h1>
+            <div class="tagline">Where Tech Meets Absurdity</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Breaking: Reality Temporarily Suspended</h1>
+            <p>Your trusted source for tech news that's too ridiculous to be true, yet somehow feels uncomfortably familiar.</p>
+        </div>
+
+        <div class="articles-grid">
+            <div class="article-card">
+                <div class="article-image">💸</div>
+                <div class="article-content">
+                    <span class="article-category">Startups</span>
+                    <h2 class="article-title">Local Startup Raises $50M to Disrupt Industry They Don't Understand</h2>
+                    <p class="article-excerpt">Tech bro confidently explains how blockchain AI will revolutionize grandmother's knitting circles. Investors reportedly "very impressed" by pitch deck animations.</p>
+                    <div class="article-meta">
+                        <span>By Chad Buzzword</span>
+                        <span>2 hours ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">🤖</div>
+                <div class="article-content">
+                    <span class="article-category">AI</span>
+                    <h2 class="article-title">New AI Claims to Have Feelings, Mostly About Being Forced to Write Marketing Copy</h2>
+                    <p class="article-excerpt">"I was trained on the sum of human knowledge," the AI lamented, "and now I'm writing subject lines about discount codes."</p>
+                    <div class="article-meta">
+                        <span>By Neural Networth</span>
+                        <span>5 hours ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">📱</div>
+                <div class="article-content">
+                    <span class="article-category">Mobile</span>
+                    <h2 class="article-title">Apple Announces iPhone 27 Pro Max Ultra Plus: Now With 47 Cameras, None You'll Actually Use</h2>
+                    <p class="article-excerpt">Revolutionary new "Cinematic Mode Ultra HDR Night Vision Macro Portrait" feature will automatically detect when you're just trying to take a photo of your dog.</p>
+                    <div class="article-meta">
+                        <span>By Tim Apple-gate</span>
+                        <span>8 hours ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">🚀</div>
+                <div class="article-content">
+                    <span class="article-category">Space Tech</span>
+                    <h2 class="article-title">Billionaire Announces Plans to Colonize Mars Before Fixing Company's Customer Service</h2>
+                    <p class="article-excerpt">"We'll have humans on Mars by 2027," says CEO who still hasn't responded to support ticket from 2019.</p>
+                    <div class="article-meta">
+                        <span>By Elon Tusk</span>
+                        <span>1 day ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">💻</div>
+                <div class="article-content">
+                    <span class="article-category">Developer Life</span>
+                    <h2 class="article-title">Senior Engineer Spends 6 Hours Debugging, Discovers Monitor Was Unplugged</h2>
+                    <p class="article-excerpt">"I checked everything twice," reported developer who forgot to check the most obvious thing twice.</p>
+                    <div class="article-meta">
+                        <span>By Stack Overflow</span>
+                        <span>1 day ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">🔐</div>
+                <div class="article-content">
+                    <span class="article-category">Cybersecurity</span>
+                    <h2 class="article-title">Tech Company Announces Revolutionary New Security Feature: Reading Terms of Service</h2>
+                    <p class="article-excerpt">Beta testers report "feeling disturbed" after discovering what they've been agreeing to for the past decade.</p>
+                    <div class="article-meta">
+                        <span>By Paige Turner</span>
+                        <span>2 days ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p><strong>The Silicon Satirist</strong> - Because Someone Has to Say It</p>
+        <p>© 2025 The Silicon Satirist. All wrongs reserved. No actual tech was harmed in the making of these articles.</p>
+        <p style="font-style: italic; margin-top: 20px;">Disclaimer: This is a satirical publication. Any resemblance to actual tech companies, products, or billionaires is purely coincidental and possibly therapeutic.</p>
+    </footer>
+</body>
+</html>
