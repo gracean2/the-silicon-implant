@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Silicon Satirist</title>
+    <title>The Silicon Implant</title>
     <style>
         * {
             margin: 0;
@@ -11,10 +11,10 @@
             box-sizing: border-box;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
         body {
-            font-family: 'Libre Franklin', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
             color: #e0e0e0;
             line-height: 1.6;
@@ -78,15 +78,38 @@
             z-index: 1;
         }
 
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         .site-title {
-            font-family: 'Libre Baskerville', serif;
+            font-family: 'Roboto', sans-serif;
             font-size: 32px;
-            font-weight: 700;
+            font-weight: 900;
             background: linear-gradient(135deg, #ffffff, #c8c8dc, #e8e8f0, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: 0.5px;
+        }
+
+        .lang-link {
+            font-size: 14px;
+            color: #c8c8dc;
+            text-decoration: none;
+            padding: 6px 12px;
+            border: 1px solid rgba(200,200,220,0.3);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background: rgba(200,200,220,0.05);
+        }
+
+        .lang-link:hover {
+            background: rgba(200,200,220,0.15);
+            border-color: rgba(200,200,220,0.5);
+            color: #ffffff;
         }
 
         .tagline {
@@ -124,8 +147,9 @@
         }
 
         .hero h1 {
-            font-family: 'Libre Baskerville', serif;
+            font-family: 'Roboto', sans-serif;
             font-size: 48px;
+            font-weight: 900;
             margin-bottom: 20px;
             background: linear-gradient(135deg, #ffffff, #d0d0e0);
             -webkit-background-clip: text;
@@ -194,7 +218,7 @@
         }
 
         .article-title {
-            font-family: 'Libre Baskerville', serif;
+            font-family: 'Roboto', sans-serif;
             font-size: 22px;
             font-weight: 700;
             margin-bottom: 12px;
@@ -260,7 +284,10 @@
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
                 </svg>
             </div>
-            <h1 class="site-title">The Silicon Satirist</h1>
+            <div class="title-wrapper">
+                <h1 class="site-title">The Silicon Implant</h1>
+                <a href="spanish.html" class="lang-link">Spanish</a>
+            </div>
             <div class="tagline">Where Tech Meets Absurdity</div>
         </div>
     </header>
@@ -353,8 +380,8 @@
     </div>
 
     <footer class="footer">
-        <p><strong>The Silicon Satirist</strong> - Because Someone Has to Say It</p>
-        <p>© 2025 The Silicon Satirist. All wrongs reserved. No actual tech was harmed in the making of these articles.</p>
+        <p><strong>The Silicon Implant</strong> - Because Someone Has to Say It</p>
+        <p>© 2025 The Silicon Implant. All wrongs reserved. No actual tech was harmed in the making of these articles.</p>
         <p style="font-style: italic; margin-top: 20px;">Disclaimer: This is a satirical publication. Any resemblance to actual tech companies, products, or billionaires is purely coincidental and possibly therapeutic.</p>
     </footer>
 </body>
