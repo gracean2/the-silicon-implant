@@ -291,6 +291,16 @@
             overflow: hidden;
         }
 
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article-image .emoji-fallback {
+            font-size: 80px;
+        }
+
         .article-image::before {
             content: '✨';
             position: absolute;
@@ -626,23 +636,24 @@
         <div class="header-content">
             <div class="logo">
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="35" r="18" fill="#000"/>
-                    <path d="M 10 100 Q 10 65 30 60 Q 40 58 50 58 Q 60 58 70 60 Q 90 65 90 100 Z" fill="#000"/>
-                    <circle cx="44" cy="33" r="2" fill="#ff00ff"/>
-                    <circle cx="56" cy="33" r="2" fill="#00ffff"/>
-                    <line x1="45" y1="42" x2="55" y2="42" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="50" cy="40" r="18" fill="#000"/>
+                    <path d="M 20 100 Q 20 70 35 65 Q 42 63 50 63 Q 58 63 65 65 Q 80 70 80 100 Z" fill="#000"/>
+                    <circle cx="44" cy="38" r="2" fill="#ff00ff"/>
+                    <circle cx="56" cy="38" r="2" fill="#00ffff"/>
+                    <line x1="45" y1="47" x2="55" y2="47" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
                 </svg>
             </div>
             <div class="title-wrapper">
                 <h1 class="site-title">The Silicon Implant</h1>
             </div>
+            <div class="tagline">GRAPHIC DESIGN IS MY PASSION</div>
         </div>
     </header>
 
     <div class="container">
         <div class="hero">
             <h1>BREAKING NEWS!!!</h1>
-            <p>100% REAL FAKE TECH NEWS</p>
+            <p>100% Real Fake Tech News</p>
         </div>
 
         <div class="articles-grid" id="articlesGrid"></div>
@@ -661,8 +672,13 @@
             <h2 class="modal-header" id="modalTitle">CREATE ARTICLE!!!</h2>
             <form id="articleForm">
                 <div class="form-group">
-                    <label>EMOJI ICON 🎨</label>
-                    <input type="text" id="emoji" placeholder="e.g., 💸, 🤖, 📱" required>
+                    <label>IMAGE UPLOAD 🖼️</label>
+                    <input type="file" id="imageUpload" accept="image/*">
+                    <small style="display: block; margin-top: 5px; color: #666;">Or use emoji below if no image</small>
+                </div>
+                <div class="form-group">
+                    <label>EMOJI ICON 🎨 (Optional)</label>
+                    <input type="text" id="emoji" placeholder="e.g., 💸, 🤖, 📱">
                 </div>
                 <div class="form-group">
                     <label>CATEGORY 📂</label>
@@ -702,6 +718,7 @@
         const defaultArticles = [
             {
                 id: Date.now() + 1,
+                image: null,
                 emoji: '💸',
                 category: 'Startups',
                 title: 'Local Startup Raises $50M to Disrupt Industry They Don\'t Understand',
@@ -711,6 +728,7 @@
             },
             {
                 id: Date.now() + 2,
+                image: null,
                 emoji: '🤖',
                 category: 'AI',
                 title: 'New AI Claims to Have Feelings, Mostly About Being Forced to Write Marketing Copy',
@@ -720,6 +738,7 @@
             },
             {
                 id: Date.now() + 3,
+                image: null,
                 emoji: '📱',
                 category: 'Mobile',
                 title: 'Apple Announces iPhone 27 Pro Max Ultra Plus: Now With 47 Cameras, None You\'ll Actually Use',
@@ -729,6 +748,7 @@
             },
             {
                 id: Date.now() + 4,
+                image: null,
                 emoji: '🚀',
                 category: 'Space Tech',
                 title: 'Billionaire Announces Plans to Colonize Mars Before Fixing Company\'s Customer Service',
@@ -738,6 +758,7 @@
             },
             {
                 id: Date.now() + 5,
+                image: null,
                 emoji: '💻',
                 category: 'Developer Life',
                 title: 'Senior Engineer Spends 6 Hours Debugging, Discovers Monitor Was Unplugged',
@@ -747,6 +768,7 @@
             },
             {
                 id: Date.now() + 6,
+                image: null,
                 emoji: '🔐',
                 category: 'Cybersecurity',
                 title: 'Tech Company Announces Revolutionary New Security Feature: Reading Terms of Service',
@@ -773,10 +795,17 @@
                 const excerpt = article.body.length > 150 ? article.body.substring(0, 150) + '...' : article.body;
                 const timeAgo = getTimeAgo(article.timestamp);
                 
+                let imageContent = '';
+                if (article.image) {
+                    imageContent = `<img src="${article.image}" alt="${article.title}">`;
+                } else {
+                    imageContent = `<span class="emoji-fallback">${article.emoji || '📰'}</span>`;
+                }
+                
                 const card = document.createElement('div');
                 card.className = 'article-card';
                 card.innerHTML = `
-                    <div class="article-image">${article.emoji}</div>
+                    <div class="article-image">${imageContent}</div>
                     <div class="article-content">
                         <span class="article-category">${article.category}</span>
                         <h2 class="article-title">${article.title}</h2>
@@ -819,7 +848,7 @@
             
             editingId = id;
             document.getElementById('modalTitle').textContent = 'EDIT ARTICLE!!!';
-            document.getElementById('emoji').value = article.emoji;
+            document.getElementById('emoji').value = article.emoji || '';
             document.getElementById('category').value = article.category;
             document.getElementById('title').value = article.title;
             document.getElementById('body').value = article.body;
@@ -837,25 +866,40 @@
         document.getElementById('articleForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const articleData = {
-                emoji: document.getElementById('emoji').value,
-                category: document.getElementById('category').value,
-                title: document.getElementById('title').value,
-                body: document.getElementById('body').value,
-                author: document.getElementById('author').value,
-                timestamp: Date.now()
+            const imageFile = document.getElementById('imageUpload').files[0];
+            
+            const processArticle = (imageData) => {
+                const articleData = {
+                    image: imageData,
+                    emoji: document.getElementById('emoji').value,
+                    category: document.getElementById('category').value,
+                    title: document.getElementById('title').value,
+                    body: document.getElementById('body').value,
+                    author: document.getElementById('author').value,
+                    timestamp: Date.now()
+                };
+                
+                if (editingId) {
+                    const index = articles.findIndex(a => a.id === editingId);
+                    articles[index] = { ...articles[index], ...articleData };
+                } else {
+                    articleData.id = Date.now();
+                    articles.push(articleData);
+                }
+                
+                renderArticles();
+                closeModal();
             };
             
-            if (editingId) {
-                const index = articles.findIndex(a => a.id === editingId);
-                articles[index] = { ...articles[index], ...articleData };
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    processArticle(event.target.result);
+                };
+                reader.readAsDataURL(imageFile);
             } else {
-                articleData.id = Date.now();
-                articles.push(articleData);
+                processArticle(null);
             }
-            
-            renderArticles();
-            closeModal();
         });
 
         document.getElementById('articleModal').addEventListener('click', function(e) {
