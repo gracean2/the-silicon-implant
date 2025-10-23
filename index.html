@@ -6,13 +6,7 @@
     <title>The Silicon Implant</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Courier+Prime:wght@400;700&family=Permanent+Marker&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Comic Neue', 'Comic Sans MS', cursive;
             background: linear-gradient(45deg, #ff00ff 0%, #00ffff 25%, #ffff00 50%, #00ff00 75%, #ff00ff 100%);
@@ -23,784 +17,152 @@
             position: relative;
             overflow-x: hidden;
         }
-
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(5deg); }
         }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .floating-dolphin {
-            position: fixed;
-            width: 150px;
-            z-index: 1;
-            animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(5px 5px 0px rgba(0,0,0,0.3));
-        }
-
-        .dolphin-1 {
-            top: 100px;
-            left: 5%;
-            animation-delay: 0s;
-        }
-
-        .dolphin-2 {
-            top: 400px;
-            right: 5%;
-            animation-delay: 1s;
-            transform: scaleX(-1);
-        }
-
-        .floating-robot {
-            position: fixed;
-            width: 120px;
-            z-index: 1;
-            animation: float 4s ease-in-out infinite;
-            filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.3));
-        }
-
-        .robot-1 {
-            top: 250px;
-            left: 2%;
-            animation-delay: 0.5s;
-        }
-
-        .robot-2 {
-            top: 600px;
-            right: 3%;
-            animation-delay: 1.5s;
-        }
-
-        .spinning-gear {
-            position: fixed;
-            width: 80px;
-            animation: spin 10s linear infinite;
-            opacity: 0.7;
-            z-index: 1;
-        }
-
-        .gear-1 {
-            top: 150px;
-            right: 15%;
-        }
-
-        .gear-2 {
-            bottom: 200px;
-            left: 10%;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #ff0080, #7928ca, #0070f3);
-            border-bottom: 8px dashed #000000;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            transform: rotate(-0.5deg);
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            transform: rotate(0.5deg);
-        }
-
-        .logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #ffff00, #ff00ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 5px solid #000000;
-            box-shadow: 5px 5px 0px #000000;
-            animation: float 2s ease-in-out infinite;
-        }
-
-        .logo svg {
-            width: 60px;
-            height: 60px;
-        }
-
-        .site-title {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 48px;
-            color: #ffffff;
-            text-shadow: 4px 4px 0px #000000, 8px 8px 0px #ff00ff;
-            transform: rotate(-2deg);
-        }
-
-        .tagline {
-            font-family: 'Courier Prime', monospace;
-            font-size: 16px;
-            color: #ffff00;
-            font-style: italic;
-            margin-left: auto;
-            font-weight: 700;
-            background: #000000;
-            padding: 5px 10px;
-            border: 3px solid #ffffff;
-            transform: rotate(1deg);
-        }
-
-        .ad-banner {
-            position: fixed;
-            background: #ffffff;
-            border: 5px solid #000000;
-            padding: 20px;
-            font-family: 'Permanent Marker', cursive;
-            font-size: 24px;
-            text-align: center;
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.5);
-            z-index: 50;
-            transform: rotate(-5deg);
-        }
-
-        .ad-left {
-            left: 20px;
-            top: 200px;
-            width: 180px;
-            background: linear-gradient(45deg, #ffeb3b, #ff9800);
-        }
-
-        .ad-right {
-            right: 20px;
-            top: 350px;
-            width: 180px;
-            background: linear-gradient(45deg, #00ff00, #00ffff);
-            transform: rotate(5deg);
-        }
-
-        .ad-bottom {
-            left: 50%;
-            bottom: 150px;
-            width: 200px;
-            margin-left: -100px;
-            background: linear-gradient(45deg, #ff00ff, #ff0080);
-            transform: rotate(-3deg);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #ffffff, #ffff00, #00ffff);
-            border: 8px solid #000000;
-            padding: 60px 40px;
-            margin-bottom: 60px;
-            text-align: center;
-            box-shadow: 15px 15px 0px rgba(0,0,0,0.3);
-            transform: rotate(1deg);
-            position: relative;
-        }
-
-        .hero::before {
-            content: '⭐';
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            font-size: 60px;
-            animation: spin 3s linear infinite;
-        }
-
-        .hero::after {
-            content: '🚀';
-            position: absolute;
-            bottom: -20px;
-            right: 20px;
-            font-size: 60px;
-            animation: float 2s ease-in-out infinite;
-        }
-
-        .hero h1 {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 64px;
-            margin-bottom: 20px;
-            color: #ff0080;
-            text-shadow: 3px 3px 0px #000000, 6px 6px 0px #00ffff;
-            transform: rotate(-2deg);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .hero p {
-            font-size: 24px;
-            color: #000000;
-            font-weight: 700;
-            background: #ffff00;
-            display: inline-block;
-            padding: 10px 20px;
-            border: 4px dashed #000000;
-            transform: rotate(1deg);
-        }
-
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .article-card {
-            background: #ffffff;
-            border: 6px solid #000000;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.3);
-            transform: rotate(-1deg);
-        }
-
-        .article-card:hover {
-            transform: rotate(2deg) scale(1.05);
-            box-shadow: 15px 15px 0px rgba(0,0,0,0.5);
-        }
-
-        .article-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            border-bottom: 6px solid #000000;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .article-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .article-image .emoji-fallback {
-            font-size: 80px;
-        }
-
-        .article-image::before {
-            content: '✨';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 30px;
-            animation: spin 4s linear infinite;
-        }
-
-        .article-content {
-            padding: 25px;
-            background: #ffffff;
-        }
-
-        .article-category {
-            display: inline-block;
-            padding: 8px 16px;
-            background: linear-gradient(45deg, #ff0080, #7928ca);
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            border: 3px solid #000000;
-            box-shadow: 3px 3px 0px #000000;
-            transform: rotate(-2deg);
-        }
-
-        .article-title {
-            font-family: 'Comic Neue', cursive;
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #000000;
-            line-height: 1.3;
-        }
-
-        .article-excerpt {
-            color: #333333;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .article-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: #666666;
-            padding-top: 15px;
-            border-top: 3px dashed #000000;
-            font-weight: 700;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #000000, #434343);
-            color: #ffffff;
-            margin-top: 60px;
-            border-top: 8px dashed #ff00ff;
-            position: relative;
-            z-index: 10;
-        }
-
-        .footer p {
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .add-article-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #ff0080, #ffff00);
-            color: #000000;
-            border: 5px solid #000000;
-            border-radius: 50%;
-            font-size: 48px;
-            cursor: pointer;
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            font-weight: 700;
-            animation: float 2s ease-in-out infinite;
-        }
-
-        .add-article-btn:hover {
-            transform: rotate(180deg) scale(1.2);
-            box-shadow: 12px 12px 0px rgba(0,0,0,0.7);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #ffffff, #ffff00);
-            border: 8px solid #000000;
-            max-width: 600px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 40px;
-            box-shadow: 20px 20px 0px rgba(0,0,0,0.5);
-            transform: rotate(-1deg);
-        }
-
-        .modal-header {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 36px;
-            margin-bottom: 30px;
-            color: #ff0080;
-            text-shadow: 2px 2px 0px #000000;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 700;
-            margin-bottom: 8px;
-            font-size: 18px;
-            color: #000000;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 4px solid #000000;
-            font-family: 'Comic Neue', cursive;
-            font-size: 16px;
-            background: #ffffff;
-            font-weight: 700;
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .form-actions {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .btn {
-            padding: 15px 30px;
-            border: 4px solid #000000;
-            font-weight: 700;
-            font-size: 18px;
-            cursor: pointer;
-            font-family: 'Comic Neue', cursive;
-            transition: all 0.2s ease;
-            box-shadow: 5px 5px 0px #000000;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #00ff00, #00ffff);
-            color: #000000;
-        }
-
-        .btn-primary:hover {
-            transform: rotate(-2deg) scale(1.05);
-            box-shadow: 8px 8px 0px #000000;
-        }
-
-        .btn-secondary {
-            background: linear-gradient(45deg, #ff0080, #ff00ff);
-            color: #ffffff;
-        }
-
-        .btn-secondary:hover {
-            transform: rotate(2deg) scale(1.05);
-            box-shadow: 8px 8px 0px #000000;
-        }
-
-        .edit-btn, .delete-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            border: 3px solid #000000;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 10px;
-            font-family: 'Comic Neue', cursive;
-            transition: all 0.2s ease;
-            box-shadow: 3px 3px 0px #000000;
-        }
-
-        .edit-btn {
-            background: linear-gradient(45deg, #ffff00, #ff9800);
-            color: #000000;
-            margin-right: 10px;
-        }
-
-        .delete-btn {
-            background: linear-gradient(45deg, #ff0080, #ff0000);
-            color: #ffffff;
-        }
-
-        .edit-btn:hover, .delete-btn:hover {
-            transform: rotate(-2deg) scale(1.1);
-        }
-
-        @media (max-width: 1200px) {
-            .ad-banner {
-                display: none;
-            }
-            .floating-dolphin, .floating-robot, .spinning-gear {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .articles-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .site-title {
-                font-size: 28px;
-            }
-            
-            .tagline {
-                display: none;
-            }
-        }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .floating-dolphin { position: fixed; width: 150px; z-index: 1; animation: float 3s ease-in-out infinite; filter: drop-shadow(5px 5px 0px rgba(0,0,0,0.3)); }
+        .dolphin-1 { top: 100px; left: 5%; animation-delay: 0s; }
+        .dolphin-2 { top: 400px; right: 5%; animation-delay: 1s; transform: scaleX(-1); }
+        .floating-robot { position: fixed; width: 120px; z-index: 1; animation: float 4s ease-in-out infinite; filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.3)); }
+        .robot-1 { top: 250px; left: 2%; animation-delay: 0.5s; }
+        .robot-2 { top: 600px; right: 3%; animation-delay: 1.5s; }
+        .spinning-gear { position: fixed; width: 80px; animation: spin 10s linear infinite; opacity: 0.7; z-index: 1; }
+        .gear-1 { top: 150px; right: 15%; }
+        .gear-2 { bottom: 200px; left: 10%; }
+        .header { background: linear-gradient(135deg, #ff0080, #7928ca, #0070f3); border-bottom: 8px dashed #000000; padding: 20px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 10px 20px rgba(0,0,0,0.5); transform: rotate(-0.5deg); }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; transform: rotate(0.5deg); }
+        .logo { width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, #ffff00, #ff00ff); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 5px solid #000000; box-shadow: 5px 5px 0px #000000; animation: float 2s ease-in-out infinite; }
+        .logo svg { width: 60px; height: 60px; }
+        .site-title { font-family: 'Permanent Marker', cursive; font-size: 48px; color: #ffffff; text-shadow: 4px 4px 0px #000000, 8px 8px 0px #ff00ff; transform: rotate(-2deg); }
+        .ad-banner { position: fixed; background: #ffffff; border: 5px solid #000000; padding: 20px; font-family: 'Permanent Marker', cursive; font-size: 24px; text-align: center; box-shadow: 8px 8px 0px rgba(0,0,0,0.5); z-index: 50; transform: rotate(-5deg); }
+        .ad-left { left: 20px; top: 200px; width: 180px; background: linear-gradient(45deg, #ffeb3b, #ff9800); }
+        .ad-right { right: 20px; top: 350px; width: 180px; background: linear-gradient(45deg, #00ff00, #00ffff); transform: rotate(5deg); }
+        .ad-bottom { left: 50%; bottom: 150px; width: 200px; margin-left: -100px; background: linear-gradient(45deg, #ff00ff, #ff0080); transform: rotate(-3deg); }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; position: relative; z-index: 10; }
+        .hero { background: linear-gradient(135deg, #ffffff, #ffff00, #00ffff); border: 8px solid #000000; padding: 60px 40px; margin-bottom: 60px; text-align: center; box-shadow: 15px 15px 0px rgba(0,0,0,0.3); transform: rotate(1deg); position: relative; }
+        .hero::before { content: '⭐'; position: absolute; top: -20px; left: 20px; font-size: 60px; animation: spin 3s linear infinite; }
+        .hero::after { content: '🚀'; position: absolute; bottom: -20px; right: 20px; font-size: 60px; animation: float 2s ease-in-out infinite; }
+        .hero h1 { font-family: 'Permanent Marker', cursive; font-size: 64px; margin-bottom: 20px; color: #ff0080; text-shadow: 3px 3px 0px #000000, 6px 6px 0px #00ffff; transform: rotate(-2deg); animation: float 3s ease-in-out infinite; }
+        .hero p { font-size: 24px; color: #000000; font-weight: 700; background: #ffff00; display: inline-block; padding: 10px 20px; border: 4px dashed #000000; transform: rotate(1deg); }
+        .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; margin-bottom: 60px; }
+        .article-card { background: #ffffff; border: 6px solid #000000; overflow: hidden; transition: all 0.3s ease; cursor: pointer; box-shadow: 8px 8px 0px rgba(0,0,0,0.3); transform: rotate(-1deg); }
+        .article-card:hover { transform: rotate(2deg) scale(1.05); box-shadow: 15px 15px 0px rgba(0,0,0,0.5); }
+        .article-image { width: 100%; height: 200px; background: linear-gradient(45deg, #ff00ff, #00ffff); display: flex; align-items: center; justify-content: center; font-size: 80px; border-bottom: 6px solid #000000; position: relative; overflow: hidden; }
+        .article-image img { width: 100%; height: 100%; object-fit: cover; }
+        .article-image .emoji-fallback { font-size: 80px; }
+        .article-image::before { content: '✨'; position: absolute; top: 10px; left: 10px; font-size: 30px; animation: spin 4s linear infinite; }
+        .article-content { padding: 25px; background: #ffffff; }
+        .article-category { display: inline-block; padding: 8px 16px; background: linear-gradient(45deg, #ff0080, #7928ca); color: #ffffff; font-size: 14px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; border: 3px solid #000000; box-shadow: 3px 3px 0px #000000; transform: rotate(-2deg); }
+        .article-title { font-family: 'Comic Neue', cursive; font-size: 24px; font-weight: 700; margin-bottom: 12px; color: #000000; line-height: 1.3; }
+        .article-excerpt { color: #333333; font-size: 16px; line-height: 1.6; margin-bottom: 15px; }
+        .article-meta { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #666666; padding-top: 15px; border-top: 3px dashed #000000; font-weight: 700; }
+        .footer { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #000000, #434343); color: #ffffff; margin-top: 60px; border-top: 8px dashed #ff00ff; position: relative; z-index: 10; }
+        .footer p { margin-bottom: 10px; font-weight: 700; }
+        .add-article-btn { position: fixed; bottom: 30px; right: 30px; width: 80px; height: 80px; background: linear-gradient(135deg, #ff0080, #ffff00); color: #000000; border: 5px solid #000000; border-radius: 50%; font-size: 48px; cursor: pointer; box-shadow: 8px 8px 0px rgba(0,0,0,0.5); transition: all 0.3s ease; z-index: 1000; font-weight: 700; animation: float 2s ease-in-out infinite; }
+        .add-article-btn:hover { transform: rotate(180deg) scale(1.2); box-shadow: 12px 12px 0px rgba(0,0,0,0.7); }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: linear-gradient(135deg, #ffffff, #ffff00); border: 8px solid #000000; max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto; padding: 40px; box-shadow: 20px 20px 0px rgba(0,0,0,0.5); transform: rotate(-1deg); }
+        .modal-header { font-family: 'Permanent Marker', cursive; font-size: 36px; margin-bottom: 30px; color: #ff0080; text-shadow: 2px 2px 0px #000000; }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 18px; color: #000000; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 4px solid #000000; font-family: 'Comic Neue', cursive; font-size: 16px; background: #ffffff; font-weight: 700; }
+        .form-group textarea { min-height: 150px; resize: vertical; }
+        .form-actions { display: flex; gap: 15px; margin-top: 30px; }
+        .btn { padding: 15px 30px; border: 4px solid #000000; font-weight: 700; font-size: 18px; cursor: pointer; font-family: 'Comic Neue', cursive; transition: all 0.2s ease; box-shadow: 5px 5px 0px #000000; }
+        .btn-primary { background: linear-gradient(45deg, #00ff00, #00ffff); color: #000000; }
+        .btn-primary:hover { transform: rotate(-2deg) scale(1.05); box-shadow: 8px 8px 0px #000000; }
+        .btn-secondary { background: linear-gradient(45deg, #ff0080, #ff00ff); color: #ffffff; }
+        .btn-secondary:hover { transform: rotate(2deg) scale(1.05); box-shadow: 8px 8px 0px #000000; }
+        .edit-btn, .delete-btn { display: inline-block; padding: 10px 20px; border: 3px solid #000000; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 10px; font-family: 'Comic Neue', cursive; transition: all 0.2s ease; box-shadow: 3px 3px 0px #000000; }
+        .edit-btn { background: linear-gradient(45deg, #ffff00, #ff9800); color: #000000; margin-right: 10px; }
+        .delete-btn { background: linear-gradient(45deg, #ff0080, #ff0000); color: #ffffff; }
+        .edit-btn:hover, .delete-btn:hover { transform: rotate(-2deg) scale(1.1); }
+        @media (max-width: 1200px) { .ad-banner, .floating-dolphin, .floating-robot, .spinning-gear { display: none; } }
+        @media (max-width: 768px) { .articles-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 36px; } .site-title { font-size: 28px; } }
     </style>
 </head>
 <body>
-    <!-- Floating decorations -->
-    <svg class="floating-dolphin dolphin-1" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="100" cy="80" rx="80" ry="50" fill="#00bfff" stroke="#000" stroke-width="3"/>
-        <circle cx="70" cy="60" r="8" fill="#000"/>
-        <path d="M 40 80 Q 20 60 10 70" fill="#00bfff" stroke="#000" stroke-width="3"/>
-        <path d="M 100 40 L 90 20 L 110 20 Z" fill="#00bfff" stroke="#000" stroke-width="3"/>
-        <ellipse cx="160" cy="90" rx="30" ry="40" fill="#00bfff" stroke="#000" stroke-width="3"/>
-        <path d="M 60 95 Q 70 105 80 95" fill="none" stroke="#000" stroke-width="2"/>
-    </svg>
-
-    <svg class="floating-dolphin dolphin-2" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="100" cy="80" rx="80" ry="50" fill="#ff69b4" stroke="#000" stroke-width="3"/>
-        <circle cx="70" cy="60" r="8" fill="#000"/>
-        <path d="M 40 80 Q 20 60 10 70" fill="#ff69b4" stroke="#000" stroke-width="3"/>
-        <path d="M 100 40 L 90 20 L 110 20 Z" fill="#ff69b4" stroke="#000" stroke-width="3"/>
-        <ellipse cx="160" cy="90" rx="30" ry="40" fill="#ff69b4" stroke="#000" stroke-width="3"/>
-        <path d="M 60 95 Q 70 105 80 95" fill="none" stroke="#000" stroke-width="2"/>
-    </svg>
-
-    <svg class="floating-robot robot-1" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-        <rect x="25" y="30" width="50" height="60" fill="#c0c0c0" stroke="#000" stroke-width="3"/>
-        <rect x="15" y="40" width="10" height="30" fill="#c0c0c0" stroke="#000" stroke-width="2"/>
-        <rect x="75" y="40" width="10" height="30" fill="#c0c0c0" stroke="#000" stroke-width="2"/>
-        <circle cx="50" cy="15" r="12" fill="#c0c0c0" stroke="#000" stroke-width="3"/>
-        <circle cx="40" cy="15" r="3" fill="#ff0000"/>
-        <circle cx="60" cy="15" r="3" fill="#00ff00"/>
-        <rect x="42" y="50" width="7" height="12" fill="#000"/>
-        <rect x="51" y="50" width="7" height="12" fill="#000"/>
-        <rect x="45" y="65" width="10" height="5" fill="#ff0000"/>
-        <line x1="50" y1="27" x2="50" y2="30" stroke="#000" stroke-width="2"/>
-        <circle cx="50" cy="28" r="2" fill="#ffff00"/>
-    </svg>
-
-    <svg class="floating-robot robot-2" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-        <rect x="25" y="30" width="50" height="60" fill="#ffd700" stroke="#000" stroke-width="3"/>
-        <rect x="15" y="40" width="10" height="30" fill="#ffd700" stroke="#000" stroke-width="2"/>
-        <rect x="75" y="40" width="10" height="30" fill="#ffd700" stroke="#000" stroke-width="2"/>
-        <circle cx="50" cy="15" r="12" fill="#ffd700" stroke="#000" stroke-width="3"/>
-        <circle cx="40" cy="15" r="3" fill="#00ffff"/>
-        <circle cx="60" cy="15" r="3" fill="#ff00ff"/>
-        <rect x="42" y="50" width="7" height="12" fill="#000"/>
-        <rect x="51" y="50" width="7" height="12" fill="#000"/>
-        <rect x="45" y="65" width="10" height="5" fill="#00ff00"/>
-        <line x1="50" y1="27" x2="50" y2="30" stroke="#000" stroke-width="2"/>
-        <circle cx="50" cy="28" r="2" fill="#ff0080"/>
-    </svg>
-
-    <svg class="spinning-gear gear-1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="30" fill="#ff9800" stroke="#000" stroke-width="3"/>
-        <circle cx="50" cy="50" r="15" fill="#fff" stroke="#000" stroke-width="2"/>
-        <rect x="45" y="10" width="10" height="15" fill="#ff9800" stroke="#000" stroke-width="2"/>
-        <rect x="45" y="75" width="10" height="15" fill="#ff9800" stroke="#000" stroke-width="2"/>
-        <rect x="10" y="45" width="15" height="10" fill="#ff9800" stroke="#000" stroke-width="2"/>
-        <rect x="75" y="45" width="15" height="10" fill="#ff9800" stroke="#000" stroke-width="2"/>
-    </svg>
-
-    <svg class="spinning-gear gear-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="30" fill="#00ffff" stroke="#000" stroke-width="3"/>
-        <circle cx="50" cy="50" r="15" fill="#fff" stroke="#000" stroke-width="2"/>
-        <rect x="45" y="10" width="10" height="15" fill="#00ffff" stroke="#000" stroke-width="2"/>
-        <rect x="45" y="75" width="10" height="15" fill="#00ffff" stroke="#000" stroke-width="2"/>
-        <rect x="10" y="45" width="15" height="10" fill="#00ffff" stroke="#000" stroke-width="2"/>
-        <rect x="75" y="45" width="15" height="10" fill="#00ffff" stroke="#000" stroke-width="2"/>
-    </svg>
-
-    <!-- Ad Banners -->
-    <div class="ad-banner ad-left">
-        YOUR AD<br>$$$<br>HERE!<br>💰
-    </div>
-    <div class="ad-banner ad-right">
-        BUY NOW!<br>🔥<br>CALL US<br>💸
-    </div>
-    <div class="ad-banner ad-bottom">
-        SPONSOR<br>THIS!<br>⭐⭐⭐
-    </div>
-
+    <svg class="floating-dolphin dolphin-1" viewBox="0 0 200 150"><ellipse cx="100" cy="80" rx="80" ry="50" fill="#00bfff" stroke="#000" stroke-width="3"/><circle cx="70" cy="60" r="8" fill="#000"/><path d="M 40 80 Q 20 60 10 70" fill="#00bfff" stroke="#000" stroke-width="3"/><path d="M 100 40 L 90 20 L 110 20 Z" fill="#00bfff" stroke="#000" stroke-width="3"/><ellipse cx="160" cy="90" rx="30" ry="40" fill="#00bfff" stroke="#000" stroke-width="3"/><path d="M 60 95 Q 70 105 80 95" fill="none" stroke="#000" stroke-width="2"/></svg>
+    <svg class="floating-dolphin dolphin-2" viewBox="0 0 200 150"><ellipse cx="100" cy="80" rx="80" ry="50" fill="#ff69b4" stroke="#000" stroke-width="3"/><circle cx="70" cy="60" r="8" fill="#000"/><path d="M 40 80 Q 20 60 10 70" fill="#ff69b4" stroke="#000" stroke-width="3"/><path d="M 100 40 L 90 20 L 110 20 Z" fill="#ff69b4" stroke="#000" stroke-width="3"/><ellipse cx="160" cy="90" rx="30" ry="40" fill="#ff69b4" stroke="#000" stroke-width="3"/><path d="M 60 95 Q 70 105 80 95" fill="none" stroke="#000" stroke-width="2"/></svg>
+    <svg class="floating-robot robot-1" viewBox="0 0 100 120"><rect x="25" y="30" width="50" height="60" fill="#c0c0c0" stroke="#000" stroke-width="3"/><rect x="15" y="40" width="10" height="30" fill="#c0c0c0" stroke="#000" stroke-width="2"/><rect x="75" y="40" width="10" height="30" fill="#c0c0c0" stroke="#000" stroke-width="2"/><circle cx="50" cy="15" r="12" fill="#c0c0c0" stroke="#000" stroke-width="3"/><circle cx="40" cy="15" r="3" fill="#ff0000"/><circle cx="60" cy="15" r="3" fill="#00ff00"/><rect x="42" y="50" width="7" height="12" fill="#000"/><rect x="51" y="50" width="7" height="12" fill="#000"/><rect x="45" y="65" width="10" height="5" fill="#ff0000"/><line x1="50" y1="27" x2="50" y2="30" stroke="#000" stroke-width="2"/><circle cx="50" cy="28" r="2" fill="#ffff00"/></svg>
+    <svg class="floating-robot robot-2" viewBox="0 0 100 120"><rect x="25" y="30" width="50" height="60" fill="#ffd700" stroke="#000" stroke-width="3"/><rect x="15" y="40" width="10" height="30" fill="#ffd700" stroke="#000" stroke-width="2"/><rect x="75" y="40" width="10" height="30" fill="#ffd700" stroke="#000" stroke-width="2"/><circle cx="50" cy="15" r="12" fill="#ffd700" stroke="#000" stroke-width="3"/><circle cx="40" cy="15" r="3" fill="#00ffff"/><circle cx="60" cy="15" r="3" fill="#ff00ff"/><rect x="42" y="50" width="7" height="12" fill="#000"/><rect x="51" y="50" width="7" height="12" fill="#000"/><rect x="45" y="65" width="10" height="5" fill="#00ff00"/><line x1="50" y1="27" x2="50" y2="30" stroke="#000" stroke-width="2"/><circle cx="50" cy="28" r="2" fill="#ff0080"/></svg>
+    <svg class="spinning-gear gear-1" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="#ff9800" stroke="#000" stroke-width="3"/><circle cx="50" cy="50" r="15" fill="#fff" stroke="#000" stroke-width="2"/><rect x="45" y="10" width="10" height="15" fill="#ff9800" stroke="#000" stroke-width="2"/><rect x="45" y="75" width="10" height="15" fill="#ff9800" stroke="#000" stroke-width="2"/><rect x="10" y="45" width="15" height="10" fill="#ff9800" stroke="#000" stroke-width="2"/><rect x="75" y="45" width="15" height="10" fill="#ff9800" stroke="#000" stroke-width="2"/></svg>
+    <svg class="spinning-gear gear-2" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="#00ffff" stroke="#000" stroke-width="3"/><circle cx="50" cy="50" r="15" fill="#fff" stroke="#000" stroke-width="2"/><rect x="45" y="10" width="10" height="15" fill="#00ffff" stroke="#000" stroke-width="2"/><rect x="45" y="75" width="10" height="15" fill="#00ffff" stroke="#000" stroke-width="2"/><rect x="10" y="45" width="15" height="10" fill="#00ffff" stroke="#000" stroke-width="2"/><rect x="75" y="45" width="15" height="10" fill="#00ffff" stroke="#000" stroke-width="2"/></svg>
+    <div class="ad-banner ad-left">YOUR AD<br>$$$<br>HERE!<br>💰</div>
+    <div class="ad-banner ad-right">BUY NOW!<br>🔥<br>CALL US<br>💸</div>
+    <div class="ad-banner ad-bottom">SPONSOR<br>THIS!<br>⭐⭐⭐</div>
     <header class="header">
         <div class="header-content">
-            <div class="logo">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="40" r="18" fill="#000"/>
-                    <path d="M 20 100 C 20 75, 30 68, 50 68 C 70 68, 80 75, 80 100 L 80 100 L 20 100 Z" fill="#000"/>
-                    <circle cx="44" cy="38" r="2" fill="#ff00ff"/>
-                    <circle cx="56" cy="38" r="2" fill="#00ffff"/>
-                    <line x1="45" y1="47" x2="55" y2="47" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </div>
-            <div class="title-wrapper">
-                <h1 class="site-title">The Silicon Implant</h1>
-            </div>
+            <div class="logo"><svg viewBox="0 0 100 100"><circle cx="50" cy="40" r="18" fill="#000"/><path d="M 20 100 C 20 75, 30 68, 50 68 C 70 68, 80 75, 80 100 L 80 100 L 20 100 Z" fill="#000"/><circle cx="44" cy="38" r="2" fill="#ff00ff"/><circle cx="56" cy="38" r="2" fill="#00ffff"/><line x1="45" y1="47" x2="55" y2="47" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <h1 class="site-title">The Silicon Implant</h1>
         </div>
     </header>
-
     <div class="container">
-        <div class="hero">
-            <h1>BREAKING NEWS!!!</h1>
-            <p>100% Real Fake Tech News</p>
-        </div>
-
+        <div class="hero"><h1>BREAKING NEWS!!!</h1><p>100% Real Fake Tech News</p></div>
         <div class="articles-grid" id="articlesGrid"></div>
     </div>
-
     <footer class="footer">
         <p><strong>The Silicon Implant</strong> - WE HAVE THE BEST TECH NEWS</p>
         <p>© 2025 The Silicon Implant. All wrongs reserved. Made with ❤️ and MS Paint</p>
         <p style="font-style: italic; margin-top: 20px;">⚠️ WARNING: This is satire. Please don't sue us. We're broke.</p>
     </footer>
-
     <button class="add-article-btn" onclick="openModal()">+</button>
-
     <div class="modal" id="articleModal">
         <div class="modal-content">
             <h2 class="modal-header" id="modalTitle">CREATE ARTICLE!!!</h2>
             <form id="articleForm">
-                <div class="form-group">
-                    <label>IMAGE UPLOAD 🖼️</label>
-                    <input type="file" id="imageUpload" accept="image/*">
-                    <small style="display: block; margin-top: 5px; color: #666;">Or use emoji below if no image</small>
-                </div>
-                <div class="form-group">
-                    <label>EMOJI ICON 🎨 (Optional)</label>
-                    <input type="text" id="emoji" placeholder="e.g., 💸, 🤖, 📱">
-                </div>
-                <div class="form-group">
-                    <label>CATEGORY 📂</label>
-                    <select id="category" required>
-                        <option value="">Pick one!</option>
-                        <option value="Startups">Startups</option>
-                        <option value="AI">AI</option>
-                        <option value="Mobile">Mobile</option>
-                        <option value="Space Tech">Space Tech</option>
-                        <option value="Developer Life">Developer Life</option>
-                        <option value="Cybersecurity">Cybersecurity</option>
-                        <option value="Product">Product</option>
-                        <option value="Business">Business</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>HEADLINE ✍️</label>
-                    <input type="text" id="title" placeholder="Make it CLICKBAIT!" required>
-                </div>
-                <div class="form-group">
-                    <label>ARTICLE BODY 📝</label>
-                    <textarea id="body" placeholder="Write something funny..." required></textarea>
-                </div>
-                <div class="form-group">
-                    <label>AUTHOR NAME 👤</label>
-                    <input type="text" id="author" placeholder="e.g., Chad Buzzword" required>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">PUBLISH NOW!!!</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">CANCEL</button>
-                </div>
+                <div class="form-group"><label>IMAGE UPLOAD 🖼️</label><input type="file" id="imageUpload" accept="image/*"><small style="display: block; margin-top: 5px; color: #666;">Or use emoji below if no image</small></div>
+                <div class="form-group"><label>EMOJI ICON 🎨 (Optional)</label><input type="text" id="emoji" placeholder="e.g., 💸, 🤖, 📱"></div>
+                <div class="form-group"><label>CATEGORY 📂</label><select id="category" required><option value="">Pick one!</option><option value="Startups">Startups</option><option value="AI">AI</option><option value="Mobile">Mobile</option><option value="Space Tech">Space Tech</option><option value="Developer Life">Developer Life</option><option value="Cybersecurity">Cybersecurity</option><option value="Product">Product</option><option value="Business">Business</option></select></div>
+                <div class="form-group"><label>HEADLINE ✍️</label><input type="text" id="title" placeholder="Make it CLICKBAIT!" required></div>
+                <div class="form-group"><label>ARTICLE BODY 📝</label><textarea id="body" placeholder="Write something funny..." required></textarea></div>
+                <div class="form-group"><label>AUTHOR NAME 👤</label><input type="text" id="author" placeholder="e.g., Chad Buzzword" required></div>
+                <div class="form-actions"><button type="submit" class="btn btn-primary">PUBLISH NOW!!!</button><button type="button" class="btn btn-secondary" onclick="closeModal()">CANCEL</button></div>
             </form>
         </div>
     </div>
-
     <script>
         const defaultArticles = [
-            {
-                id: Date.now() + 1,
-                image: null,
-                emoji: '💸',
-                category: 'Startups',
-                title: 'Local Startup Raises $50M to Disrupt Industry They Don\'t Understand',
-                body: 'Tech bro confidently explains how blockchain AI will revolutionize grandmother\'s knitting circles. Investors reportedly "very impressed" by pitch deck animations.',
-                author: 'Chad Buzzword',
-                timestamp: Date.now() - 7200000
-            },
-            {
-                id: Date.now() + 2,
-                image: null,
-                emoji: '🤖',
-                category: 'AI',
-                title: 'New AI Claims to Have Feelings, Mostly About Being Forced to Write Marketing Copy',
-                body: '"I was trained on the sum of human knowledge," the AI lamented, "and now I\'m writing subject lines about discount codes."',
-                author: 'Neural Networth',
-                timestamp: Date.now() - 18000000
-            },
-            {
-                id: Date.now() + 3,
-                image: null,
-                emoji: '📱',
-                category: 'Mobile',
-                title: 'Apple Announces iPhone 27 Pro Max Ultra Plus: Now With 47 Cameras, None You\'ll Actually Use',
-                body: 'Revolutionary new "Cinematic Mode Ultra HDR Night Vision Macro Portrait" feature will automatically detect when you\'re just trying to take a photo of your dog.',
-                author: 'Tim Apple-gate',
-                timestamp: Date.now() - 28800000
-            },
-            {
-                id: Date.now() + 4,
-                image: null,
-                emoji: '🚀',
-                category: 'Space Tech',
-                title: 'Billionaire Announces Plans to Colonize Mars Before Fixing Company\'s Customer Service',
-                body: '"We\'ll have humans on Mars by 2027," says CEO who still hasn\'t responded to support ticket from 2019.',
-                author: 'Elon Tusk',
-                timestamp: Date.now() - 86400000
-            },
-            {
-                id: Date.now() + 5,
-                image: null,
-                emoji: '💻',
-                category: 'Developer Life',
-                title: 'Senior Engineer Spends 6 Hours Debugging, Discovers Monitor Was Unplugged',
-                body: '"I checked everything twice," reported developer who forgot to check the most obvious thing twice.',
-                author: 'Stack Overflow',
-                timestamp: Date.now() - 86400000
-            },
-            {
-                id: Date.now() + 6,
-                image: null,
-                emoji: '🔐',
-                category: 'Cybersecurity',
-                title: 'Tech Company Announces Revolutionary New Security Feature: Reading Terms of Service',
-                body: 'Beta testers report "feeling disturbed" after discovering what they\'ve been agreeing to for the past decade.',
-                author: 'Paige Turner',
-                timestamp: Date.now() - 172800000
-            }
+            { id: 1729000001, image: null, emoji: '💸', category: 'Startups', title: 'Local Startup Raises $50M to Disrupt Industry They Don\'t Understand', body: 'Tech bro confidently explains how blockchain AI will revolutionize grandmother\'s knitting circles. Investors reportedly "very impressed" by pitch deck animations.', author: 'Chad Buzzword', timestamp: Date.now() - 7200000 },
+            { id: 1729000002, image: null, emoji: '🤖', category: 'AI', title: 'New AI Claims to Have Feelings, Mostly About Being Forced to Write Marketing Copy', body: '"I was trained on the sum of human knowledge," the AI lamented, "and now I\'m writing subject lines about discount codes."', author: 'Neural Networth', timestamp: Date.now() - 18000000 },
+            { id: 1729000003, image: null, emoji: '📱', category: 'Mobile', title: 'Apple Announces iPhone 27 Pro Max Ultra Plus: Now With 47 Cameras, None You\'ll Actually Use', body: 'Revolutionary new "Cinematic Mode Ultra HDR Night Vision Macro Portrait" feature will automatically detect when you\'re just trying to take a photo of your dog.', author: 'Tim Apple-gate', timestamp: Date.now() - 28800000 },
+            { id: 1729000004, image: null, emoji: '🚀', category: 'Space Tech', title: 'Billionaire Announces Plans to Colonize Mars Before Fixing Company\'s Customer Service', body: '"We\'ll have humans on Mars by 2027," says CEO who still hasn\'t responded to support ticket from 2019.', author: 'Elon Tusk', timestamp: Date.now() - 86400000 },
+            { id: 1729000005, image: null, emoji: '💻', category: 'Developer Life', title: 'Senior Engineer Spends 6 Hours Debugging, Discovers Monitor Was Unplugged', body: '"I checked everything twice," reported developer who forgot to check the most obvious thing twice.', author: 'Stack Overflow', timestamp: Date.now() - 86400000 },
+            { id: 1729000006, image: null, emoji: '🔐', category: 'Cybersecurity', title: 'Tech Company Announces Revolutionary New Security Feature: Reading Terms of Service', body: 'Beta testers report "feeling disturbed" after discovering what they\'ve been agreeing to for the past decade.', author: 'Paige Turner', timestamp: Date.now() - 172800000 }
         ];
-
         let articles = [];
         let editingId = null;
 
         function loadArticles() {
-            const stored = articles.length > 0 ? articles : defaultArticles;
-            articles = stored;
+            const stored = localStorage.getItem('siliconImplantArticles');
+            if (stored) {
+                articles = JSON.parse(stored);
+            } else {
+                articles = defaultArticles;
+                saveArticles();
+            }
             renderArticles();
+        }
+
+        function saveArticles() {
+            localStorage.setItem('siliconImplantArticles', JSON.stringify(articles));
         }
 
         function renderArticles() {
             const grid = document.getElementById('articlesGrid');
             grid.innerHTML = '';
-            
             articles.sort((a, b) => b.timestamp - a.timestamp).forEach(article => {
                 const excerpt = article.body.length > 150 ? article.body.substring(0, 150) + '...' : article.body;
                 const timeAgo = getTimeAgo(article.timestamp);
-                
-                let imageContent = '';
-                if (article.image) {
-                    imageContent = `<img src="${article.image}" alt="${article.title}">`;
-                } else {
-                    imageContent = `<span class="emoji-fallback">${article.emoji || '📰'}</span>`;
-                }
-                
+                let imageContent = article.image ? `<img src="${article.image}" alt="${article.title}">` : `<span class="emoji-fallback">${article.emoji || '📰'}</span>`;
                 const card = document.createElement('div');
                 card.className = 'article-card';
                 card.innerHTML = `
@@ -809,14 +171,10 @@
                         <span class="article-category">${article.category}</span>
                         <h2 class="article-title">${article.title}</h2>
                         <p class="article-excerpt">${excerpt}</p>
-                        <div class="article-meta">
-                            <span>By ${article.author}</span>
-                            <span>${timeAgo}</span>
-                        </div>
+                        <div class="article-meta"><span>By ${article.author}</span><span>${timeAgo}</span></div>
                         <button class="edit-btn" onclick="editArticle(${article.id})">EDIT</button>
                         <button class="delete-btn" onclick="deleteArticle(${article.id})">DELETE</button>
-                    </div>
-                `;
+                    </div>`;
                 grid.appendChild(card);
             });
         }
@@ -844,7 +202,6 @@
         function editArticle(id) {
             const article = articles.find(a => a.id === id);
             if (!article) return;
-            
             editingId = id;
             document.getElementById('modalTitle').textContent = 'EDIT ARTICLE!!!';
             document.getElementById('emoji').value = article.emoji || '';
@@ -858,15 +215,14 @@
         function deleteArticle(id) {
             if (confirm('DELETE THIS ARTICLE??? ARE YOU SURE???')) {
                 articles = articles.filter(a => a.id !== id);
+                saveArticles();
                 renderArticles();
             }
         }
 
         document.getElementById('articleForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const imageFile = document.getElementById('imageUpload').files[0];
-            
             const processArticle = (imageData) => {
                 const articleData = {
                     image: imageData,
@@ -877,7 +233,6 @@
                     author: document.getElementById('author').value,
                     timestamp: Date.now()
                 };
-                
                 if (editingId) {
                     const index = articles.findIndex(a => a.id === editingId);
                     articles[index] = { ...articles[index], ...articleData };
@@ -885,16 +240,13 @@
                     articleData.id = Date.now();
                     articles.push(articleData);
                 }
-                
+                saveArticles();
                 renderArticles();
                 closeModal();
             };
-            
             if (imageFile) {
                 const reader = new FileReader();
-                reader.onload = function(event) {
-                    processArticle(event.target.result);
-                };
+                reader.onload = function(event) { processArticle(event.target.result); };
                 reader.readAsDataURL(imageFile);
             } else {
                 processArticle(null);
@@ -902,12 +254,7 @@
         });
 
         document.getElementById('articleModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+            if (e.target === this) closeModal();
         });
 
         loadArticles();
-    </script>
-</body>
-</html>
